@@ -1,6 +1,6 @@
 # Angular App
 
-Sugestão de arquitetura para App Angular 7 (v 7.2.7).
+Sugestão de arquitetura para App Angular 7 (v 7.2.9).
 
 Dar clone nesse Projeto e logo após `npm i` para instalar a última versão das dependências do app e iniciar o desenvolvimento.
 
@@ -68,7 +68,7 @@ As pastas estão organizadas desta maneira, cada módulo tem suas pastas `compon
 
 Em especial o `feature` module que é um modulo referência para criar outros também tem uma pasta `modules` caso seu feature módule cresça muito você ir modularizando ele também.
 
-Quanto ao `shared` module não deixei para que houvesse rotas nele por não fazer sentido porém caso seja util para você basta ter como base o `feature` module para criar as rotas.
+Quanto ao `shared` module não está pronto para que se tenha rotas nele, por não fazer sentido, porém caso seja util para você basta ter como base o `feature` module para criar as rotas.
 
 ```sh 
 📦src
