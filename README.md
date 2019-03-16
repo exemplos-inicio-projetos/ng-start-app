@@ -52,7 +52,7 @@ Neste projeto está sendo utilizado o sistema de grid do bootstrap, apenas ele, 
 
 O `normalize.scss` também está sendo utilizado é um reset de alguns elementos que não funcionam corretamente em alguns browsers entre outros, para mais detalhes visitar o repositório.
 
-* [Normalize](https://github.com/necolas/normalize.css) - Repostório normalize.css.
+* [Normalize](https://github.com/necolas/normalize.css) - Repositório normalize.css.
 
 ```sh
   "styles": [
