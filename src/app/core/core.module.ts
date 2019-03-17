@@ -28,6 +28,7 @@ import { CoreComponent } from './core.component';
   ],
   exports: [
     AppRoutingModule,
+    CoreComponent
   ],
   providers: [
     AuthService,

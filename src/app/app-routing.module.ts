@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules, UrlSegment } from '@angular/router';
 
-import { CoreComponent } from 'core/core.component';
+import { HomeComponent } from 'core/pages';
 
 
 /**
@@ -16,8 +16,8 @@ export function matcher (url: UrlSegment[]) {
 const appRoutes: Routes = [
   { matcher, loadChildren: './modules/feature/feature.module#FeatureModule'},
   { path: 'feature', loadChildren: './modules/feature/feature.module#FeatureModule'},
-  { path: '', component: CoreComponent, pathMatch: 'full' },
-  { path: '**', component: CoreComponent, pathMatch: 'full' },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '**', component: HomeComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
