@@ -29,6 +29,8 @@ $theme-color in $themes {
             .#{$color-name} {
                 color: $color;
             }
+            // Cria a var da cor
+            --#{$color-name}-color: #{$color};
         }
     }
 };
