@@ -1,5 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 
+import { Theme } from './models/theme.enum';
+
 @Component({
     selector: 'app-core-root',
     template: `

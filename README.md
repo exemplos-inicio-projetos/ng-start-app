@@ -62,6 +62,28 @@ O `normalize.scss` também está sendo utilizado é um reset de alguns elementos
   ],
 ```
 
+## Temas
+
+Utilizando o scss, foi gerado 2 temas `light` e `dark` no arquivo `/src/themes/themes.scss`, a saída deste arquivo pode ser vista aqui:
+
+* [Gist Github](https://gist.github.com/TusaMAL/151e6eefe818989cf673735302046df2) - Input/Output themes.scss
+
+Se baseando neles crie temas para o seu arquivo, os temas são adicionados utilizando o `@HostBinding` no `core.component.ts` ficando assim: 
+
+```sh
+    theme: Theme = Theme.light;
+
+    @HostBinding('class.theme-dark') get darkTheme() {
+        if (this.theme === Theme.dark) { return true; }
+    }
+
+    @HostBinding('class.theme-light') get lightTheme() {
+        if (this.theme === Theme.light) { return true; }
+    }
+```
+
+Para mudar de tema apenas altere o valor da propriedade `theme` que o angular vai se encarregar de adicionar o tema na classe `app-core-root` como no exemplo será `theme-light` ou `theme-dark` por padrão está o light. O `Theme` é um enum sua model está na pasta `models`.
+
 ## Estrutura de Arquivos
 
 As pastas estão organizadas desta maneira, cada módulo tem suas pastas `component`, `directives`, `models`, `pages`, `pipes` e `services`, dentro das pastas existe um arquivo `index.ts` para exportar os arquivos da pasta para deixar mais simples muitos imports.

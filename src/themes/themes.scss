@@ -17,7 +17,7 @@ $font-sizes: (
     xl: 1.5rem, // 24px
 );
 
-// Percorre a variáavel dos temas
+// Percorre a variável dos temas
 @each $theme-name,
 $theme-color in $themes {
     // Cria a classe do tema

@@ -1,7 +1,7 @@
 /**
  * Enum das cores do tema
  */
-enum Theme {
+export enum Theme {
     dark,
     light
 }
