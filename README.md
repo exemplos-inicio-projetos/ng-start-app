@@ -64,9 +64,9 @@ O `normalize.scss` também está sendo utilizado é um reset de alguns elementos
 
 ## Temas
 
-Utilizando o scss, foi gerado 2 temas `light` e `dark` no arquivo `/src/themes/themes.scss`, a saída deste arquivo pode ser vista aqui:
+Utilizando o scss, foi gerado 2 temas `light` e `dark` no arquivo `/src/themes/framework/_themes.scss`, a saída deste arquivo pode ser vista aqui:
 
-* [Gist Github](https://gist.github.com/TusaMAL/151e6eefe818989cf673735302046df2) - Input/Output themes.scss
+* [Gist Github](https://gist.github.com/TusaMAL/3d862bc5f0d9dbd967b97ae7dfc34ff1) - Input/Output themes.scss
 
 Se baseando neles crie temas para o seu arquivo, os temas são adicionados utilizando o `@HostBinding` no `core.component.ts` ficando assim: 
 

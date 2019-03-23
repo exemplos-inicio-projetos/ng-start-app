@@ -7,18 +7,17 @@ import { Theme } from './models/theme.enum';
     template: `
         <nav>NavBar</nav>
         <router-outlet></router-outlet>
-    `,
-    styles: [``]
+    `
 })
 export class CoreComponent implements OnInit {
 
     theme: Theme = Theme.light;
 
-    @HostBinding('class.theme-dark') get darkTheme() {
+    @HostBinding('class.theme-dark') get darkTheme(): boolean {
         if (this.theme === Theme.dark) { return true; }
     }
 
-    @HostBinding('class.theme-light') get lightTheme() {
+    @HostBinding('class.theme-light') get lightTheme(): boolean {
         if (this.theme === Theme.light) { return true; }
     }
 
