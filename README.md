@@ -1,6 +1,6 @@
 # Angular App
 
-Sugestão de arquitetura para App Angular 7 (v 7.2.9).
+Sugestão de arquitetura para App Angular 7 (v 7.2.10).
 
 Dar clone nesse Projeto e logo após `npm i` para instalar a última versão das dependências do app e iniciar o desenvolvimento.
 
@@ -82,7 +82,15 @@ Se baseando neles crie temas para o seu arquivo, os temas são adicionados utili
     }
 ```
 
-Para mudar de tema apenas altere o valor da propriedade `theme` que o angular vai se encarregar de adicionar o tema na classe `app-core-root` como no exemplo será `theme-light` ou `theme-dark` por padrão está o light. O `Theme` é um enum sua model está na pasta `models`.
+Para mudar de tema apenas altere o valor da propriedade `theme` que o angular vai se encarregar de adicionar o tema nas classes do `app-core-root` como no exemplo será `theme-light` ou `theme-dark` por padrão está o light. 
+
+```sh
+<app-core-root class="theme-light">
+  ...
+</app-core-root>
+```
+
+A classe `Theme` é um enum sua model está na pasta `models`.
 
 ## Estrutura de Arquivos
 
