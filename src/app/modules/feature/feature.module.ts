@@ -25,7 +25,11 @@ import { featureServices } from './services';
         SharedModule
     ],
     entryComponents: [
-        ... featurePages
+        /**
+         * Entry components não funcionam em módulos lazy loaded adicionar no entry components
+         * do shared ou do core module
+         * https://github.com/angular/angular/issues/14324#issuecomment-433389833
+         */
     ],
     providers: [
         ... featureServices
