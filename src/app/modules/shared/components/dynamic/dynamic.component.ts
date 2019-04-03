@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DynamicComponentCreatorService } from 'core/services';
 
 @Component({
     selector: 'app-dynamic',
@@ -8,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DynamicComponent implements OnInit {
 
-    constructor() { }
+    title = '';
+
+    constructor(
+        private _dcc: DynamicComponentCreatorService
+    ) { }
 
     public ngOnInit(): void {
+    }
+
+    pop() {
+        this._dcc.destroy();
     }
 
 }

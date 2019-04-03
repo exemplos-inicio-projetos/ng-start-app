@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { SharedHttpService } from 'shared/services';
 import { DynamicComponentCreatorService } from 'core/services';
+import { DynamicComponent } from 'shared/components';
 
 @Component({
   selector: 'app-feature-root',
@@ -27,6 +28,12 @@ export class FeatureRootComponent implements OnInit {
     console.log('QueryParams: ', this._activatedRoute.snapshot.queryParams);
     console.log('Params :', this._activatedRoute.snapshot.params);
     this._sharedHttp.postTest();
+    const component: DynamicComponent = this._dynamicComponentCreator.create(DynamicComponent, {title: 'testes'});
+    // Destroi o componente 2 segundos após a sua criação
+    setTimeout(() => {
+      console.log('Componente destruído');
+      component.pop();
+    }, 2000);
   }
 
   navToHome() {

@@ -5,16 +5,16 @@ import {
 @Injectable()
 export class DynamicComponentCreatorService {
 
-  /** 
+  /**
    * É onde contém a fábrica de componentes é usado para criar e destruir os mesmos dinâmicamente
-   * é necessário receber ele da pagina raiz do módulo a ser utilizado 
+   * é necessário receber ele da pagina raiz do módulo a ser utilizado
    */
   protected viewContainerRef: ViewContainerRef;
   /** Array que contém as referências dos componentes */
   protected componentsReferences: Array<any> = [];
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
+    private _componentFactoryResolver: ComponentFactoryResolver,
   ) {
   }
 
@@ -73,18 +73,19 @@ export class DynamicComponentCreatorService {
   }
 
   /**
-   * Cria um componente dinamico
+   * Cria um componente dinamico e retorna sua referência para executar métodos ou acessar propriedades do mesmo
    * @param component Componente que será criado
    * @param params parametros que serão passados ex: {title: 'titulo'}
+   * @returns retorna a instancia do componente criado
    */
-  create(component: Type<any>, params = {}) {
+  create<T = any>(component: Type<T>, params = {}): T {
 
     /** Define a fabrica do componente */
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(component);
     /** Cria o componente e retorna sua referência */
     const componentRef = this.viewContainerRef.createComponent(componentFactory);
     /** Instancia do componente criado */
-    const currentComponent = componentRef.instance;
+    const currentComponent = componentRef.instance as any;
 
     /** Recebendo as propriedades do objeto */
     const paramsArray = Reflect.ownKeys(params);
@@ -92,13 +93,14 @@ export class DynamicComponentCreatorService {
     // Verificando se existe algum parametro
     if (paramsArray.length) {
       // Percorrendo os parametros
-      for (const param of paramsArray) { 
+      for (const param of paramsArray) {
         // Definindo a propriedade que ficará disponível para uso a partir do método ngOnInit
         Reflect.defineProperty(currentComponent, param, { writable: true });
         Reflect.set(currentComponent, param, params[param]);
       }
     }
     this.componentsReferences.push(componentRef);
+    return currentComponent;
   }
 
   /**
