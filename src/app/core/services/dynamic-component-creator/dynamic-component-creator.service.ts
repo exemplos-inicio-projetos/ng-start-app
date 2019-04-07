@@ -60,6 +60,7 @@ export class DynamicComponentCreatorService {
     if (index >= 0) {
       // Filtra o componente baseado no indice dele no array que contém as referencias dos mesmos
       const componentRef = this.componentsReferences.filter((element, indexFilter) => indexFilter === index)[0];
+      componentRef.instance.callbackFn();
       // Salvando o indice do componente para remover na função do VCR
       const viewContainerRefIndex: number = this.viewContainerRef.indexOf(componentRef);
       // Remove o componente do DOM
@@ -67,6 +68,9 @@ export class DynamicComponentCreatorService {
       // Remove o componente da pilha de referencias
       this.componentsReferences = this.componentsReferences.filter((element, indexFilter) => indexFilter !== index);
     } else {
+      const componentRef = this.componentsReferences[this.componentsReferences.length - 1];
+
+      componentRef.instance.callbackFn();
       this.viewContainerRef.remove();
       this.componentsReferences.pop();
     }
@@ -76,9 +80,10 @@ export class DynamicComponentCreatorService {
    * Cria um componente dinamico e retorna sua referência para executar métodos ou acessar propriedades do mesmo
    * @param component Componente que será criado
    * @param params parametros que serão passados ex: {title: 'titulo'}
+   * @param callbackFn função para ser executada antes de destruir o componente
    * @returns retorna a instancia do componente criado
    */
-  create<T = any>(component: Type<T>, params = {}): T {
+  create<T = any>(component: Type<T>, params = {}, callbackFn?: Function): T {
 
     /** Define a fabrica do componente */
     const componentFactory = this._componentFactoryResolver.resolveComponentFactory(component);
@@ -90,6 +95,12 @@ export class DynamicComponentCreatorService {
     /** Recebendo as propriedades do objeto */
     const paramsArray = Reflect.ownKeys(params);
 
+    // Definindo a propriedade da function de callback
+    Reflect.defineProperty(currentComponent, 'callbackFn', { writable: true });
+    // Caso não seja passada nenhuma function atriubui uma function vazia
+    if (!callbackFn) { callbackFn = () => { }; }
+    // Definindo a função de callback
+    Reflect.set(currentComponent, 'callbackFn', callbackFn);
     // Verificando se existe algum parametro
     if (paramsArray.length) {
       // Percorrendo os parametros

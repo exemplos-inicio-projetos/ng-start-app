@@ -28,7 +28,10 @@ export class FeatureRootComponent implements OnInit {
     console.log('QueryParams: ', this._activatedRoute.snapshot.queryParams);
     console.log('Params :', this._activatedRoute.snapshot.params);
     this._sharedHttp.postTest();
-    const component: DynamicComponent = this._dynamicComponentCreator.create(DynamicComponent, {title: 'testes'});
+    const omg = () => {
+      console.log('omg');
+    }
+    const component: DynamicComponent = this._dynamicComponentCreator.create(DynamicComponent, { title: 'testes' }, omg);
     // Destroi o componente 2 segundos após a sua criação
     setTimeout(() => {
       console.log('Componente destruído');
