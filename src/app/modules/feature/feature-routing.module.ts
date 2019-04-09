@@ -11,7 +11,9 @@ const defaultRoutes: Routes = [
     // { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] },
     // { path: ':id', component: RecipeDetailComponent },
     // { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard] },
-  ]}
+  ]},
+  // Módulos aninhados devem ser colocados fora para funcionar!
+  // { path: 'nested', loadChildren: './modules/feature-nested/feature-nested.module#FeatureNestedModule'},
 ];
 
 
