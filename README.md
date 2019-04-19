@@ -1,6 +1,6 @@
 # Angular App
 
-Sugestão de arquitetura para App Angular 7 (v 7.2.12).
+Sugestão de arquitetura para App Angular 7 (v 7.2.13).
 
 Dar clone nesse Projeto e logo após `npm i` para instalar a última versão das dependências do app e iniciar o desenvolvimento.
 
