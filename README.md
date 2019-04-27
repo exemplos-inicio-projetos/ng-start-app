@@ -1,6 +1,6 @@
 # Angular App
 
-Sugestão de arquitetura para App Angular 7 (v 7.2.13).
+Sugestão de arquitetura para App Angular 7 (v 7.2.14).
 
 Dar clone nesse Projeto e logo após `npm i` para instalar a última versão das dependências do app e iniciar o desenvolvimento.
 
@@ -34,6 +34,7 @@ Reinicie sua IDE para certificar de que os paths serão reconhecidos.
 Adicione os end-points da sua api no arquivo `proxy.conf.json` para evitar problemas com CORS (desenvolvimento apenas).
 
 * [Fazendo o CORS seu amigo](https://www.hiago.me/2018/09/08/ionic-angular-fazendo-o-cors-seu-amigo/) - By Hiago.
+* [Proxying to a backend server](https://angular.io/guide/build#proxying-to-a-backend-server) - Angular.io.
 
 ```sh 
 {
@@ -43,6 +44,13 @@ Adicione os end-points da sua api no arquivo `proxy.conf.json` para evitar probl
   }
 }
 ```
+
+## Interceptors
+
+Na raiz do app há um interceptor na pasta `interceptors` o arquivo `custom-http.interceptor.ts` para que você possa interceptar os requests feitos pela sua aplicação,
+é possível adicionar/remover headers, exibir mensagens de erro padrão baseado no retorno do request/response e etc. Para mais informações visite a documentação do angular:
+
+* [Intercepting-requests-and-responses](https://angular.io/guide/http#intercepting-requests-and-responses) - Angular.io.
 
 ## Frameworks CSS
 
@@ -96,7 +104,7 @@ A classe `Theme` é um enum sua model está na pasta `models`.
 
 As pastas estão organizadas desta maneira, cada módulo tem suas pastas `component`, `directives`, `models`, `pages`, `pipes` e `services`, dentro das pastas existe um arquivo `index.ts` para exportar os arquivos da pasta para deixar mais simples muitos imports.
 
-Em especial o `feature` module que é um modulo referência para criar outros também tem uma pasta `modules` caso seu feature módule cresça muito você ir modularizando ele também.
+Em especial o `feature` module que é um modulo referência para criar outros, também tem uma pasta `modules` caso seu feature módule cresça muito você ir modularizando ele também.
 
 Quanto ao `shared` module não está pronto para que se tenha rotas nele, por não fazer sentido, porém caso seja util para você basta ter como base o `feature` module para criar as rotas.
 
