@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { SharedModule } from 'shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { FeatureRoutingModule } from './feature-routing.module';
 import { FeatureRootComponent } from './feature-root.component';
 import { featurePages } from './pages';

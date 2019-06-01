@@ -8,7 +8,7 @@ import { HomeComponent } from './pages';
 import { HeaderComponent } from './components';
 import { DynamicComponentCreatorService } from './services';
 import { AuthService } from 'guards/auth/services';
-import { SharedModule } from 'shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CustomHttpInterceptor } from '../interceptors/custom-http.interceptor';
 import { AuthModule } from 'guards/auth/auth.module';
 import { CoreComponent } from './core.component';

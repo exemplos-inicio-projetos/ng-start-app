@@ -12,8 +12,8 @@
     "paths": {
       "core/*": ["src/app/core/*"],
       "guards/*": ["src/app/guards/*"],
-      "feature/*": ["src/app/modules/feature/*"],
-      "shared/*": ["src/app/modules/shared/*"]
+      "feature/*": ["src/app/feature/*"],
+      "shared/*": ["src/app/shared/*"]
     },
     "typeRoots": [
       "node_modules/@types"

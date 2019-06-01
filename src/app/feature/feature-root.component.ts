@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { SharedHttpService } from 'shared/services';
+import { SharedHttpService } from 'src/app/shared/services';
 import { DynamicComponentCreatorService } from 'core/services';
-import { DynamicComponent } from 'shared/components';
+import { DynamicComponent } from 'src/app/shared/components';
 
 @Component({
   selector: 'app-feature-root',

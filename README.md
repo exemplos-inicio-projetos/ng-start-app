@@ -1,6 +1,6 @@
 # Angular App
 
-Sugestão de arquitetura para App Angular 7 (v 7.2.15).
+Sugestão de arquitetura para App Angular 8 (v 8.0.0).
 
 Dar clone nesse Projeto e logo após `npm i` para instalar a última versão das dependências do app e iniciar o desenvolvimento.
 
@@ -24,8 +24,8 @@ Reinicie sua IDE para certificar de que os paths serão reconhecidos.
 "paths": {
       "core/*": ["src/app/core/*"],
       "guards/*": ["src/app/guards/*"],
-      "feature/*": ["src/app/modules/feature/*"],
-      "shared/*": ["src/app/modules/shared/*"]
+      "feature/*": ["src/app/feature/*"],
+      "shared/*": ["src/app/shared/*"]
     }
 ```
 
@@ -104,7 +104,7 @@ A classe `Theme` é um enum sua model está na pasta `models`.
 
 As pastas estão organizadas desta maneira, cada módulo tem suas pastas `component`, `directives`, `models`, `pages`, `pipes` e `services`, dentro das pastas existe um arquivo `index.ts` para exportar os arquivos da pasta para deixar mais simples muitos imports.
 
-Em especial o `feature` module que é um modulo referência para criar outros, também tem uma pasta `modules` caso seu feature módule cresça muito você ir modularizando ele também.
+Em especial o `feature` module que é um modulo referência para criar outros.
 
 Quanto ao `shared` module não está pronto para que se tenha rotas nele, por não fazer sentido, porém caso seja util para você basta ter como base o `feature` module para criar as rotas.
 
@@ -133,28 +133,27 @@ Quanto ao `shared` module não está pronto para que se tenha rotas nele, por n�
  ┃ ┃ ┃ ┣ 📜auth.guard.ts
  ┃ ┃ ┃ ┗ 📜auth.module.ts
  ┃ ┣ 📂interceptors
- ┃ ┣ 📂modules
- ┃ ┃ ┣ 📂feature
- ┃ ┃ ┃ ┣ 📂components
- ┃ ┃ ┃ ┣ 📂directives
- ┃ ┃ ┃ ┣ 📂models
- ┃ ┃ ┃ ┣ 📂modules
- ┃ ┃ ┃ ┣ 📂pages
- ┃ ┃ ┃ ┣ 📂pipes
- ┃ ┃ ┃ ┣ 📂services
- ┃ ┃ ┃ ┣ 📜feature-root.component.html
- ┃ ┃ ┃ ┣ 📜feature-root.component.scss
- ┃ ┃ ┃ ┣ 📜feature-root.component.ts
- ┃ ┃ ┃ ┣ 📜feature-routing.module.ts
- ┃ ┃ ┃ ┗ 📜feature.module.ts
- ┃ ┃ ┗ 📂shared
- ┃ ┃ ┃ ┣ 📂components
- ┃ ┃ ┃ ┣ 📂directives
- ┃ ┃ ┃ ┣ 📂models
- ┃ ┃ ┃ ┣ 📂pages
- ┃ ┃ ┃ ┣ 📂pipes
- ┃ ┃ ┃ ┣ 📂services
- ┃ ┃ ┃ ┗ 📜shared.module.ts
+ ┃ ┣ 📂feature
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📂directives
+ ┃ ┃ ┣ 📂models
+ ┃ ┃ ┣ 📂modules
+ ┃ ┃ ┣ 📂pages
+ ┃ ┃ ┣ 📂pipes
+ ┃ ┃ ┣ 📂services
+ ┃ ┃ ┣ 📜feature-root.component.html
+ ┃ ┃ ┣ 📜feature-root.component.scss
+ ┃ ┃ ┣ 📜feature-root.component.ts
+ ┃ ┃ ┣ 📜feature-routing.module.ts
+ ┃ ┃ ┗ 📜feature.module.ts
+ ┃ ┗ 📂shared
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📂directives
+ ┃ ┃ ┣ 📂models
+ ┃ ┃ ┣ 📂pages
+ ┃ ┃ ┣ 📂pipes
+ ┃ ┃ ┣ 📂services
+ ┃ ┃ ┗ 📜shared.module.ts
  ┃ ┣ 📜app-routing.module.ts
  ┃ ┣ 📜app.component.ts
  ┃ ┗ 📜app.module.ts

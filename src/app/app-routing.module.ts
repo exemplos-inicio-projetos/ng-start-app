@@ -3,19 +3,8 @@ import { Routes, RouterModule, PreloadAllModules, UrlSegment } from '@angular/ro
 
 import { HomeComponent } from 'core/pages';
 
-
-/**
- * Função para entrar na rota que começe com 'feature'
- * @param url Url Digitada
- */
-export function matcher (url: UrlSegment[]) {
-  console.log(url);
-  return url.length >= 1 && url[0].path.startsWith('feature') ? ({consumed: url}) : null;
-}
-
 const appRoutes: Routes = [
-  { path: 'feature', loadChildren: './modules/feature/feature.module#FeatureModule'},
-  { matcher: matcher, loadChildren: './modules/feature/feature.module#FeatureModule'},
+  { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule)},
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', component: HomeComponent, pathMatch: 'full' },
 ];
