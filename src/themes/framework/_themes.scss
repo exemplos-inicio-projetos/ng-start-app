@@ -23,7 +23,7 @@ $shared-colors: (
     surface: #fff
 );
 
-// Tamanhos de fonte
+// Tamanhos de fonte com base no font-size da tag HTML
 $font-sizes: (
     xs: .75rem, // 12px
     sm: .875rem, // 14px

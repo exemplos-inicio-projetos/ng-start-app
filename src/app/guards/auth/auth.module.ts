@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { AuthRoutingModule } from './auth-routing.module';
+import { AuthRoutingModule } from 'guards/auth/auth-routing.module';
 
 @NgModule({
   declarations: [

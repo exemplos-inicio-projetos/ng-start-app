@@ -10,6 +10,7 @@
     "experimentalDecorators": true,
     "target": "es5",
     "paths": {
+      "app/*": ["src/app/*"],
       "core/*": ["src/app/core/*"],
       "guards/*": ["src/app/guards/*"],
       "feature/*": ["src/app/feature/*"],

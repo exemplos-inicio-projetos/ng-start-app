@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { DynamicComponent } from './components';
-import { sharedServices } from './services';
-import { sharedComponents } from './components';
-import { sharedDirectives } from './directives';
-import { sharedPipes } from './pipes';
-import { sharedPages } from './pages';
-import { CustomHttpInterceptor } from '../interceptors/custom-http.interceptor';
+import { CustomHttpInterceptor } from 'app/interceptors/custom-http.interceptor';
+import { DynamicComponent } from 'shared/components';
+import { sharedServices } from 'shared/services';
+import { sharedComponents } from 'shared/components';
+import { sharedDirectives } from 'shared/directives';
+import { sharedPipes } from 'shared/pipes';
+import { sharedPages } from 'shared/pages';
 
 /**
  * Variável utilizada para importar os módulos em um só lugar

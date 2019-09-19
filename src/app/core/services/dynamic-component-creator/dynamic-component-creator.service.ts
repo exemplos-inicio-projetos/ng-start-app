@@ -42,6 +42,44 @@ export class DynamicComponentCreatorService {
   }
 
   /**
+  * Cria um componente dinamico e retorna sua referência para executar métodos ou acessar propriedades do mesmo
+  * @param component Componente que será criado
+  * @param params parametros que serão passados ex: {title: 'titulo'}
+  * @param callbackFn função para ser executada antes de destruir o componente
+  * @returns retorna a instancia do componente criado
+  */
+  create<T = any>(component: Type<T>, params = {}, callbackFn?: Function): T {
+
+    /** Define a fabrica do componente */
+    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(component);
+    /** Cria o componente e retorna sua referência */
+    const componentRef = this.viewContainerRef.createComponent(componentFactory);
+    /** Instancia do componente criado */
+    const currentComponent = componentRef.instance as any;
+
+    /** Recebendo as propriedades do objeto */
+    const paramsArray = Reflect.ownKeys(params);
+
+    // Definindo a propriedade da function de callback
+    Reflect.defineProperty(currentComponent, 'callbackFn', { writable: true });
+    // Caso não seja passada nenhuma function atriubui uma function vazia
+    if (!callbackFn) { callbackFn = () => { }; }
+    // Definindo a função de callback
+    Reflect.set(currentComponent, 'callbackFn', callbackFn);
+    // Verificando se existe algum parametro
+    if (paramsArray.length) {
+      // Percorrendo os parametros
+      for (const param of paramsArray) {
+        // Definindo a propriedade que ficará disponível para uso a partir do método ngOnInit
+        Reflect.defineProperty(currentComponent, param, { writable: true });
+        Reflect.set(currentComponent, param, params[param]);
+      }
+    }
+    this.componentsReferences.push(componentRef);
+    return currentComponent;
+  }
+
+  /**
    * Recebe o viewContainerRef da pagina root do modulo para criar componentes dinâmicamente
    * @param viewContainerRef viewContainerRef do componente
    */
@@ -74,44 +112,6 @@ export class DynamicComponentCreatorService {
       this.viewContainerRef.remove();
       this.componentsReferences.pop();
     }
-  }
-
-  /**
-   * Cria um componente dinamico e retorna sua referência para executar métodos ou acessar propriedades do mesmo
-   * @param component Componente que será criado
-   * @param params parametros que serão passados ex: {title: 'titulo'}
-   * @param callbackFn função para ser executada antes de destruir o componente
-   * @returns retorna a instancia do componente criado
-   */
-  create<T = any>(component: Type<T>, params = {}, callbackFn?: Function): T {
-
-    /** Define a fabrica do componente */
-    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(component);
-    /** Cria o componente e retorna sua referência */
-    const componentRef = this.viewContainerRef.createComponent(componentFactory);
-    /** Instancia do componente criado */
-    const currentComponent = componentRef.instance as any;
-
-    /** Recebendo as propriedades do objeto */
-    const paramsArray = Reflect.ownKeys(params);
-
-    // Definindo a propriedade da function de callback
-    Reflect.defineProperty(currentComponent, 'callbackFn', { writable: true });
-    // Caso não seja passada nenhuma function atriubui uma function vazia
-    if (!callbackFn) { callbackFn = () => { }; }
-    // Definindo a função de callback
-    Reflect.set(currentComponent, 'callbackFn', callbackFn);
-    // Verificando se existe algum parametro
-    if (paramsArray.length) {
-      // Percorrendo os parametros
-      for (const param of paramsArray) {
-        // Definindo a propriedade que ficará disponível para uso a partir do método ngOnInit
-        Reflect.defineProperty(currentComponent, param, { writable: true });
-        Reflect.set(currentComponent, param, params[param]);
-      }
-    }
-    this.componentsReferences.push(componentRef);
-    return currentComponent;
   }
 
   /**

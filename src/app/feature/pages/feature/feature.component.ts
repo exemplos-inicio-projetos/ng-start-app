@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { SharedHttpService } from 'src/app/shared/services';
-import { DynamicComponentCreatorService } from 'core/services';
+import { SharedHttpService } from 'shared/services';
 
 @Component({
   selector: 'app-feature',

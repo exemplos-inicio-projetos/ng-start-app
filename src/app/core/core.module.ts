@@ -3,20 +3,24 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from '../app-routing.module';
-import { HomeComponent } from './pages';
-import { HeaderComponent } from './components';
-import { DynamicComponentCreatorService } from './services';
+import { AppRoutingModule } from 'app/app-routing.module';
+import { CustomHttpInterceptor } from 'app/interceptors/custom-http.interceptor';
+import { coreComponents } from 'core/components';
+import { coreServices } from 'core/services';
+import { CoreComponent } from 'core/core.component';
+import { corePages } from 'core/pages';
 import { AuthService } from 'guards/auth/services';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { CustomHttpInterceptor } from '../interceptors/custom-http.interceptor';
 import { AuthModule } from 'guards/auth/auth.module';
-import { CoreComponent } from './core.component';
+import { SharedModule } from 'shared/shared.module';
+import { coreDirectives } from 'core/directives';
+import { corePipes } from 'core/pipes';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    HomeComponent,
+    ...coreComponents,
+    ...coreDirectives,
+    ...corePages,
+    ...corePipes,
     CoreComponent
   ],
   imports: [
@@ -32,8 +36,8 @@ import { CoreComponent } from './core.component';
   ],
   providers: [
     AuthService,
-    DynamicComponentCreatorService,
-    {provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true}
+    ...coreServices,
+    { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true }
   ]
 })
 export class CoreModule {

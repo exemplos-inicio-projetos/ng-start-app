@@ -1,8 +1,8 @@
-/**
- * @description exportar todas as pastas neste arquivo
- * @example export * from './auth/auth.service';
- * @example export * from './pax/pax.pipe';
- * @example export * from './navbar/navbar.component';
- */
+import { HomeComponent } from './home/home.component';
 
-export * from './home/home.component';
+/**
+ * Variável utilizada para importar as paginas em um só lugar
+ */
+export const corePages: any = [
+    HomeComponent
+];

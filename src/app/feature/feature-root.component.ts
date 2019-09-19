@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { SharedHttpService } from 'src/app/shared/services';
 import { DynamicComponentCreatorService } from 'core/services';
-import { DynamicComponent } from 'src/app/shared/components';
+import { SharedHttpService } from 'shared/services';
+import { DynamicComponent } from 'shared/components';
 
 @Component({
   selector: 'app-feature-root',
@@ -13,13 +13,17 @@ import { DynamicComponent } from 'src/app/shared/components';
 export class FeatureRootComponent implements OnInit {
 
   constructor(
-    private _router: Router,
     private _activatedRoute: ActivatedRoute,
+    private _dynamicComponentCreator: DynamicComponentCreatorService,
+    private _router: Router,
     private _sharedHttp: SharedHttpService,
     private _viewContainerRef: ViewContainerRef,
-    private _dynamicComponentCreator: DynamicComponentCreatorService
   ) {
 
+  }
+
+  navToHome() {
+    this._router.navigate(['']);
   }
 
   ngOnInit() {
@@ -30,7 +34,7 @@ export class FeatureRootComponent implements OnInit {
     this._sharedHttp.postTest();
     const omg = () => {
       console.log('omg');
-    }
+    };
     const component: DynamicComponent = this._dynamicComponentCreator.create(DynamicComponent, { title: 'testes' }, omg);
     // Destroi o componente 2 segundos após a sua criação
     setTimeout(() => {
@@ -38,9 +42,4 @@ export class FeatureRootComponent implements OnInit {
       component.pop();
     }, 2000);
   }
-
-  navToHome() {
-    this._router.navigate(['']);
-  }
-
 }

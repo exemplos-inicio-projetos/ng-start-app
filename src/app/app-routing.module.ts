@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules, UrlSegment } from '@angular/router';
 
-import { HomeComponent } from 'core/pages';
+import { HomeComponent } from 'core/pages/home/home.component';
 
 const appRoutes: Routes = [
   { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule)},

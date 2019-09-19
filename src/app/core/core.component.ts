@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 
-import { Theme } from './models/theme.enum';
+import { Theme } from 'core/models/theme.enum';
 
 @Component({
     selector: 'app-core-root',
@@ -11,7 +11,6 @@ import { Theme } from './models/theme.enum';
 })
 export class CoreComponent implements OnInit {
 
-    theme: Theme = Theme.light;
 
     @HostBinding('class.theme-dark') get darkTheme(): boolean {
         if (this.theme === Theme.dark) { return true; }
@@ -21,11 +20,9 @@ export class CoreComponent implements OnInit {
         if (this.theme === Theme.light) { return true; }
     }
 
+    theme: Theme = Theme.light;
+
     constructor() { }
 
     ngOnInit(): void { }
-
 }
-
-
-

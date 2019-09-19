@@ -1,3 +1,11 @@
+
+/**
+ * Variável utilizada para importar os Pipes em um só lugar
+ */
+export const corePipes: any = [
+];
+
+
 /**
  * @description exportar todas as pastas neste arquivo
  * @example export * from './auth/auth.service';

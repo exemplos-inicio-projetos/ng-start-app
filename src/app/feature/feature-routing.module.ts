@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, UrlSegment } from '@angular/router';
 
-import { AuthGuard } from 'src/app/guards/auth/auth.guard';
-import { FeatureRootComponent } from './feature-root.component';
-import { FeatureComponent } from './pages';
+import { AuthGuard } from 'guards/auth/auth.guard';
+import { FeatureRootComponent } from 'feature/feature-root.component';
+import { FeatureComponent } from 'feature/pages';
 
 const defaultRoutes: Routes = [
   { path: '', component: FeatureRootComponent, canActivate: [AuthGuard], children: [
