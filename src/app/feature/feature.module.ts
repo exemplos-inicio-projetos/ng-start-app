@@ -8,6 +8,7 @@ import { featureComponents } from './components';
 import { featureDirectives } from './directives';
 import { featurePipes } from './pipes';
 import { featureServices } from './services';
+import { FeatureDynamicComponent } from './components/feature-dynamic/feature-dynamic.component';
 
 /**
  * Este módulo é apenas para servir como base para criação de outro
@@ -25,11 +26,7 @@ import { featureServices } from './services';
         SharedModule
     ],
     entryComponents: [
-        /**
-         * Entry components não funcionam em módulos lazy loaded adicionar no entry components
-         * do shared ou do core module
-         * https://github.com/angular/angular/issues/14324#issuecomment-433389833
-         */
+        FeatureDynamicComponent
     ],
     providers: [
         ... featureServices

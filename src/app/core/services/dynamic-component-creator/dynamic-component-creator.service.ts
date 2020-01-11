@@ -1,6 +1,7 @@
 import {
-  Injectable, ViewContainerRef, ComponentFactoryResolver, Type
+  Injectable, ViewContainerRef, ComponentFactoryResolver, Type, Injector, Compiler, Inject, NgModuleFactory
 } from '@angular/core';
+import { LAZY_WIDGETS } from 'app/lazy-widgets';
 
 @Injectable()
 export class DynamicComponentCreatorService {
@@ -14,7 +15,10 @@ export class DynamicComponentCreatorService {
   protected componentsReferences: Array<any> = [];
 
   constructor(
+    private _compiler: Compiler,
     private _componentFactoryResolver: ComponentFactoryResolver,
+    private _injector: Injector,
+    @Inject(LAZY_WIDGETS) private _lazyWidgets: { [key: string]: () => Promise<NgModuleFactory<any> | Type<any>> },
   ) {
   }
 
@@ -44,14 +48,17 @@ export class DynamicComponentCreatorService {
   /**
   * Cria um componente dinamico e retorna sua referência para executar métodos ou acessar propriedades do mesmo
   * @param component Componente que será criado
+  * @param modulePath Caminho da rota definido para acessar o módulo, olhar const de rotas no modulo que exporta as rotas
   * @param params parametros que serão passados ex: {title: 'titulo'}
   * @param callbackFn função para ser executada antes de destruir o componente
   * @returns retorna a instancia do componente criado
   */
-  create<T = any>(component: Type<T>, params = {}, callbackFn?: Function): T {
+  async create<T = any>(component: Type<T>, modulePath: string, params = {}, callbackFn = () => {}): Promise<T> {
 
+    const moduleFactory = await this._compileModule(modulePath);
+    const moduleRef = moduleFactory.create(this._injector);
     /** Define a fabrica do componente */
-    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(component);
+    const componentFactory = moduleRef.componentFactoryResolver.resolveComponentFactory(component);
     /** Cria o componente e retorna sua referência */
     const componentRef = this.viewContainerRef.createComponent(componentFactory);
     /** Instancia do componente criado */
@@ -62,8 +69,7 @@ export class DynamicComponentCreatorService {
 
     // Definindo a propriedade da function de callback
     Reflect.defineProperty(currentComponent, 'callbackFn', { writable: true });
-    // Caso não seja passada nenhuma function atriubui uma function vazia
-    if (!callbackFn) { callbackFn = () => { }; }
+
     // Definindo a função de callback
     Reflect.set(currentComponent, 'callbackFn', callbackFn);
     // Verificando se existe algum parametro
@@ -111,6 +117,24 @@ export class DynamicComponentCreatorService {
       componentRef.instance.callbackFn();
       this.viewContainerRef.remove();
       this.componentsReferences.pop();
+    }
+  }
+
+  private async _compileModule(modulePath: string): Promise<NgModuleFactory<any>> {
+    try {
+      const tempModule = await this._lazyWidgets[modulePath]();
+      let moduleFactory: NgModuleFactory<any>;
+      if (tempModule instanceof NgModuleFactory) {
+        // For AOT
+        moduleFactory = tempModule;
+      } else {
+        // For JIT
+        moduleFactory = await this._compiler.compileModuleAsync(tempModule);
+      }
+      return moduleFactory;
+    } catch (error) {
+      console.error(error);
+      return error;
     }
   }
 

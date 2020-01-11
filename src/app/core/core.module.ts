@@ -14,6 +14,7 @@ import { AuthModule } from 'guards/auth/auth.module';
 import { SharedModule } from 'shared/shared.module';
 import { coreDirectives } from 'core/directives';
 import { corePipes } from 'core/pipes';
+import { LAZY_WIDGETS, lazyArrayToObj } from 'app/lazy-widgets';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { corePipes } from 'core/pipes';
   providers: [
     AuthService,
     ...coreServices,
-    { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
+    { provide: LAZY_WIDGETS, useFactory: lazyArrayToObj }
   ]
 })
 export class CoreModule {

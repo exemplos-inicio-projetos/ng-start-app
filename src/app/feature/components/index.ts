@@ -1,8 +1,10 @@
+import { FeatureDynamicComponent } from "./feature-dynamic/feature-dynamic.component";
+
 /**
  * Variável utilizada para importar os componentes em um só lugar
  */
 export const featureComponents: any = [
-
+    FeatureDynamicComponent
 ];
 
 /**

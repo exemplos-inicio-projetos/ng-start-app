@@ -1,12 +1,39 @@
 # Angular App
 
-Sugestão de arquitetura para App Angular 8 (v 8.2.12).
+Sugestão de arquitetura para App Angular 8 (v 8.2.14).
 
 Dar clone nesse Projeto e logo após `npm i` para instalar a última versão das dependências do app e iniciar o desenvolvimento.
 
 ## Development server
 
 Digite `npm start` para começar. O browser será aberto automaticamente em `http://localhost:4200/`.
+
+## Compilação Dinâmica de Módulos
+* [Tutorial Compilação de Módulos](https://dev.to/binarysort/manually-lazy-load-components-in-angular-8-ffi)
+
+Agora é possível compilar módulos dinamicamente (adaptei a solução acima para o projeto base).
+
+Primeiro exportar a variável de rotas que possuam módulos por ex: `app\app-routing.module.ts` tem o seguinte módulo com o `path: 'feature'` carregado por rota:
+
+```sh
+export const appRoutes: Routes = [
+  { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule)},
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '**', component: HomeComponent, pathMatch: 'full' },
+];
+```
+
+usar o *spread operator* na propriedade `appRoutes` para não ter que ficar digitando mais de uma vez a rota ou em qualquer outro **módulo** de rotas que seu app possuír para que o processo seja "automático". 
+arquivo: `app\lazy-widgets.ts`
+```sh
+  // This will create a dedicated JS bundle for lazy module
+  export const lazyWidgets: Routes = [
+      ...appRoutes
+  ];
+```
+
+Qual o ganho disso? Bom agora os *entry components* podem ficar nos seus respectivos módulos! Não sendo mais necessário deixa-los nos módulos que inicialmente não eram responsáveis por eles (algo que era inicialmente ruim na nossa arquitetura)!
+Um dos problemas dos módulos *lazy loaded* era que, não conseguiamos criar componentes dinamicamente sem o módulo estar carregado pelo Angular.
 
 ## HMR
 

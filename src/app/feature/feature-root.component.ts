@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DynamicComponentCreatorService } from 'core/services';
 import { SharedHttpService } from 'shared/services';
 import { DynamicComponent } from 'shared/components';
+import { FeatureDynamicComponent } from './components/feature-dynamic/feature-dynamic.component';
 
 @Component({
   selector: 'app-feature-root',
@@ -35,11 +36,13 @@ export class FeatureRootComponent implements OnInit {
     const omg = () => {
       console.log('omg');
     };
-    const component: DynamicComponent = this._dynamicComponentCreator.create(DynamicComponent, { title: 'testes' }, omg);
-    // Destroi o componente 2 segundos após a sua criação
-    setTimeout(() => {
-      console.log('Componente destruído');
-      component.pop();
-    }, 2000);
+    (async () => {
+      const component: FeatureDynamicComponent = await this._dynamicComponentCreator.create(FeatureDynamicComponent, 'feature', { title: 'testes' }, omg);
+      // Destroi o componente 2 segundos após a sua criação
+      setTimeout(() => {
+        console.log('Componente destruído');
+        component.pop();
+      }, 2000);
+    })();
   }
 }
