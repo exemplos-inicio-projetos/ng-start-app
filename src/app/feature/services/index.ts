@@ -1,8 +1,10 @@
+import { ResolverService } from "./resolver.service";
+
 /**
  * Variável utilizada para importar os serviços em um só lugar
  */
 export const featureServices: any = [
-
+    ResolverService
 ];
 
 /**
@@ -11,3 +13,5 @@ export const featureServices: any = [
  * @example export * from './pax/pax.pipe';
  * @example export * from './navbar/navbar.component';
  */
+
+ export * from './resolver.service';

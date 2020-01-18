@@ -16,6 +16,10 @@ import { coreDirectives } from 'core/directives';
 import { corePipes } from 'core/pipes';
 import { LAZY_WIDGETS, lazyArrayToObj } from 'app/lazy-widgets';
 
+// export function getConfigAsync(configService: ConfigService) {
+//   return () => configService.getConfigAsync();
+// }
+
 @NgModule({
   declarations: [
     ...coreComponents,
@@ -39,7 +43,9 @@ import { LAZY_WIDGETS, lazyArrayToObj } from 'app/lazy-widgets';
     AuthService,
     ...coreServices,
     { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
-    { provide: LAZY_WIDGETS, useFactory: lazyArrayToObj }
+    { provide: LAZY_WIDGETS, useFactory: lazyArrayToObj },
+     // { provide: APP_INITIALIZER, useFactory: getConfigAsync, deps: [ConfigService], multi: true },
+
   ]
 })
 export class CoreModule {
