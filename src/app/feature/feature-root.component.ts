@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { DynamicComponentCreatorService } from 'core/services';
 import { SharedHttpService } from 'shared/services';
-import { DynamicComponent } from 'shared/components';
+import { DynamicComponent, ModalComponent } from 'shared/components';
 import { FeatureDynamicComponent } from './components/feature-dynamic/feature-dynamic.component';
 
 @Component({
@@ -20,11 +20,14 @@ export class FeatureRootComponent implements OnInit {
     private _sharedHttp: SharedHttpService,
     private _viewContainerRef: ViewContainerRef,
   ) {
-
   }
 
   navToHome() {
     this._router.navigate(['']);
+  }
+
+  destroy(message) {
+    console.log(message);
   }
 
   ngOnInit() {
@@ -33,12 +36,11 @@ export class FeatureRootComponent implements OnInit {
     console.log('QueryParams: ', this._activatedRoute.snapshot.queryParams);
     console.log('Params :', this._activatedRoute.snapshot.params);
     this._sharedHttp.postTest();
-    const omg = () => {
-      console.log('omg');
-    };
     (async () => {
-      const component: FeatureDynamicComponent = await this._dynamicComponentCreator.create(FeatureDynamicComponent, 'feature', { title: 'testes' }, omg);
+      const component: FeatureDynamicComponent = await this._dynamicComponentCreator.create([FeatureDynamicComponent], 'feature', 'feature', [{ title: 'testes' }]);
+      const modalComponent: FeatureDynamicComponent = await this._dynamicComponentCreator.create([ModalComponent, FeatureDynamicComponent], 'feature', 'modal', [{ title: 'testes' }], [{ destroy: (args) => { this.destroy(args) } }]);
       // Destroi o componente 2 segundos após a sua criação
+      console.log(modalComponent);
       setTimeout(() => {
         console.log('Componente destruído');
         component.pop();

@@ -13,6 +13,6 @@ export class FeatureDynamicComponent implements OnInit {
 
     ngOnInit(): void { }
     pop() {
-        this._dcc.destroy();
+        this._dcc.destroy('feature');
     }
 }

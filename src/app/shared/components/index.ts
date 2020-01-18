@@ -1,10 +1,18 @@
 import { DynamicComponent } from './dynamic/dynamic.component';
+import { ModalComponent } from './modal/modal.component';
 
 /**
 * Variável utilizada para importar os componentes em um só lugar
 */
 export const sharedComponents: any = [
-    DynamicComponent
+    DynamicComponent,
+    ModalComponent
+];
+
+
+export const sharedEntryComponents: any = [
+    DynamicComponent,
+    ModalComponent
 ];
 
 /**
@@ -15,3 +23,4 @@ export const sharedComponents: any = [
  */
 
 export * from './dynamic/dynamic.component';
+export * from './modal/modal.component';

@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { CustomHttpInterceptor } from 'app/interceptors/custom-http.interceptor';
-import { DynamicComponent } from 'shared/components';
+import { sharedEntryComponents } from 'shared/components';
 import { sharedServices } from 'shared/services';
 import { sharedComponents } from 'shared/components';
 import { sharedDirectives } from 'shared/directives';
@@ -39,7 +39,7 @@ const defaultModules = [
         ...sharedPages
     ],
     entryComponents: [
-        DynamicComponent
+        ...sharedEntryComponents
     ],
     providers: [
         ...sharedServices,
