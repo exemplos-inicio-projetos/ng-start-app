@@ -25,9 +25,6 @@ import { FeatureDynamicComponent } from './components/feature-dynamic/feature-dy
         FeatureRoutingModule,
         SharedModule
     ],
-    entryComponents: [
-        FeatureDynamicComponent
-    ],
     providers: [
         ... featureServices
     ]

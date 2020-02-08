@@ -37,8 +37,17 @@ export class FeatureRootComponent implements OnInit {
     console.log('Params :', this._activatedRoute.snapshot.params);
     this._sharedHttp.postTest();
     (async () => {
-      const component: FeatureDynamicComponent = await this._dynamicComponentCreator.create([FeatureDynamicComponent], 'feature', 'feature', [{ title: 'testes' }]);
-      const modalComponent: FeatureDynamicComponent = await this._dynamicComponentCreator.create([ModalComponent, FeatureDynamicComponent], 'feature', 'modal', [{ title: 'testes' }], [{ destroy: (args) => { this.destroy(args) } }]);
+      // Cria componente dinâmico
+      const component: FeatureDynamicComponent =
+        await this._dynamicComponentCreator.create([FeatureDynamicComponent], 'feature', 'feature', [{ title: 'testes' }]);
+      // Cria componente de modal com outro componente dentro
+      const modalComponent: FeatureDynamicComponent =
+        await this._dynamicComponentCreator.create(
+          [ModalComponent, FeatureDynamicComponent],
+          'feature', 'modal',
+          [{ title: 'testes' }],
+          [{ destroy: (args) => { this.destroy(args); } }]
+        );
       // Destroi o componente 2 segundos após a sua criação
       console.log(modalComponent);
       setTimeout(() => {

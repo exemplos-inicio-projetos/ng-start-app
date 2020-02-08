@@ -14,7 +14,7 @@ import { AuthModule } from 'guards/auth/auth.module';
 import { SharedModule } from 'shared/shared.module';
 import { coreDirectives } from 'core/directives';
 import { corePipes } from 'core/pipes';
-import { LAZY_WIDGETS, lazyArrayToObj } from 'app/lazy-widgets';
+import { HomeComponent } from './pages/home/home.component';
 
 // export function getConfigAsync(configService: ConfigService) {
 //   return () => configService.getConfigAsync();
@@ -37,13 +37,13 @@ import { LAZY_WIDGETS, lazyArrayToObj } from 'app/lazy-widgets';
   ],
   exports: [
     AppRoutingModule,
-    CoreComponent
+    CoreComponent,
+    HomeComponent
   ],
   providers: [
     AuthService,
     ...coreServices,
     { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
-    { provide: LAZY_WIDGETS, useFactory: lazyArrayToObj },
      // { provide: APP_INITIALIZER, useFactory: getConfigAsync, deps: [ConfigService], multi: true },
 
   ]

@@ -11,7 +11,7 @@ export class ResolverService implements Resolve<Promise<any>> {
             try {
                 setTimeout(() => {
                     resolve(console.log('Resolver example'));
-                }, 2000)
+                }, 100);
             } catch (error) {
                 reject(error);
             }

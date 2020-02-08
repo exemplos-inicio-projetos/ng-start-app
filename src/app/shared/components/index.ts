@@ -9,12 +9,6 @@ export const sharedComponents: any = [
     ModalComponent
 ];
 
-
-export const sharedEntryComponents: any = [
-    DynamicComponent,
-    ModalComponent
-];
-
 /**
  * @description exportar todas as pastas neste arquivo
  * @example export * from './auth/auth.service';
