@@ -14,7 +14,7 @@ export const appRoutes: Routes = [
     /** preloadingStrategy: Carrega primeiro os módulos necessários para iniciar
      o app e depois carrega os que podem ser acessados pelo usuário
      */
-    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule],
 
