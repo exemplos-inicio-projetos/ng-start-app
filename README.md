@@ -1,6 +1,6 @@
 # Angular App
 
-Sugestão de arquitetura para App Angular 8 (v 8.2.14).
+Sugestão de arquitetura para App Angular 12 (v 12.1.4).
 
 Dar clone nesse Projeto e logo após `npm i` para instalar a última versão das dependências do app e iniciar o desenvolvimento.
 
