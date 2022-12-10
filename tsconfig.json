@@ -8,7 +8,7 @@
     "declaration": false,
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es2020",
     "paths": {
       "app/*": ["src/app/*"],
       "core/*": ["src/app/core/*"],
@@ -23,5 +23,8 @@
       "es2017",
       "dom"
     ]
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true
   }
 }
